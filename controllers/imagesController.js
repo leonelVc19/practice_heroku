@@ -1,0 +1,53 @@
+const multerConfig = require('../config/multerConfig');
+
+const multer = require('multer');
+
+const { Image } = require('../models');
+
+
+
+// parámetro donde viene el archivo
+const upload = multer(multerConfig()).single('file');
+
+exports.fileUpload = (req, res, next) => {
+  upload(req, res, (error) => {
+    if (error) {
+      return res.status(400).json({ message: error.message });
+    }
+    next();
+  });
+};
+
+//ADD
+exports.add = async(req, res, next) => {
+    try{
+        const imageData = {...req.body};
+        
+        if (req.file && req.file.filename) {
+            imageData.path = `${req.file.destination.substring(2)}${req.file.filename}`;
+          }
+
+        const image = await Image.create(imageData);
+        res.json({
+            message: "Imagen, registrada.",
+            image,
+        });
+        
+    } catch(error){
+        let errores = [];
+        if (error. errors){
+            errores = error.errors.map((errorItem) => ({
+                error: errorItem.message,
+                field: errorItem.path,
+            }));
+        }
+        res.status(500).json({
+            message: "Error al registrar imagen.",
+            errors: errores,
+        });
+    }
+};
+//UPDATED
+//LIST 
+//SHOW
+//DELETE

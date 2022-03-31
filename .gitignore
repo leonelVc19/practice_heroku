@@ -1,0 +1,10 @@
+#Capeta de migraciones la cual se crea de forma automatically
+#al ejecutar las migraciones
+/migrations
+#Capeta de los modulos
+/node_modules
+#Carpeta en donde se almacenan las imagenes
+/uploads
+
+#Documento de las variables de entorno.
+.env
