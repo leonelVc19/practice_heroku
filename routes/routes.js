@@ -6,7 +6,7 @@ const customersController = require('../controllers/CustomerController');
 const productCategoriesController = require('../controllers/productCategoriesController');
 const productsController = require('../controllers/productsControllers');
 const imageController = require('../controllers/imagesController');
-
+/*njsdnsns */
 
 //IMPORTAR RUTAS DE USUARIOS.
 const usuariosController = require('../controllers/UsuariosController');
