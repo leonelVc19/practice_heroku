@@ -66,13 +66,17 @@ exports.actua = async (req, res, next ) => {
 exports.show = async (req, res, next) => {
 
     try {
-        const customers = await Customer.findAll({
+        const customers = await Customer.findOne({
             where: {
                 id:req.params.id,
               },
             include: ['category']
         });
-        res.json(customers);
+        if(!customers) {
+            res.status(404).json({message:'No se encontro al cliente'});
+        } else {
+            res.json(customers);
+        }
         
     } catch (error) {
         res.status(500).json({

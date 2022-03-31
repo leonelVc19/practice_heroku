@@ -1,4 +1,7 @@
 const express = require('express');
+/* Importación de AccessControl*/
+const { grantAccess } = require('../middlewares/accessControl');
+
 const router = express.Router();
 
 //Importar controladoers
@@ -11,10 +14,11 @@ const imageController = require('../controllers/imagesController');
 //IMPORTAR RUTAS DE USUARIOS.
 const usuariosController = require('../controllers/UsuariosController');
 
+
 module.exports = () =>{
 
     //Clientes.
-    router.get('/customers', customersController.list);
+    router.get('/customers', grantAccess('readAny', 'usuario'), customersController.list);
     router.post('/customers', customersController.add);
     router.get('/customers/:id', customersController.show);
     router.post('/filtrar', customersController.filtrar);
