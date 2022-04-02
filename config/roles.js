@@ -1,6 +1,7 @@
 const AccessControl = require('accesscontrol');
 
-const ac = AccessControl();
+const ac = new AccessControl();
+
 
 /**
  * definir roles del más inferior al superior
@@ -14,20 +15,20 @@ exports.roles = () => {
     ac.grant('ninguno');
     //Aqui los permisos de rol: niguno
 
-    ac.grant('usuario')
+    ac.grant('user')
         .readOwn('perfil')
         .readAny(['product']);
 
     ac.grant('admin')
-        .extend('usuario') // hereda el rol de usuario
-        .readAny('usuario')// poder leer usuarios
-        .createAny(['customer', 'product', 'usuario'])
-        .updateAny(['customer', 'product', 'usuario']);
+        .extend('user') // hereda el rol de usuario
+        .readAny('customer')// poder leer usuarios
+        .createAny(['customer', 'product', 'user'])
+        .updateAny(['customer', 'product', 'user']);
     
     
     ac.grant('super')
         .extend('admin')
-        .deleteAny(['customer', 'product', 'usuario']);
+        .deleteAny(['customer', 'product', 'user']);
 
     return ac;
 };

@@ -1,4 +1,4 @@
-const { roles } = require('../config/roles');
+const { roles }  = require('../config/roles');
 
 /**
  * función para validar el permiso del usuario actual sobre el recurso indicado

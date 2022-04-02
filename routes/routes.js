@@ -18,7 +18,7 @@ const usuariosController = require('../controllers/UsuariosController');
 module.exports = () =>{
 
     //Clientes.
-    router.get('/customers', grantAccess('readAny', 'usuario'), customersController.list);
+    router.get('/customers', grantAccess('readAny', 'customer'), customersController.list);
     router.post('/customers', customersController.add);
     router.get('/customers/:id', customersController.show);
     router.post('/filtrar', customersController.filtrar);
@@ -27,13 +27,13 @@ module.exports = () =>{
     router.put('/customers/:id', customersController.actua);
 
     //rutas para productos categoria.
-    router.get('/product-category', productCategoriesController.list)
+    router.get('/product-category',grantAccess('readAny', 'user'), productCategoriesController.list)
     router.post('/product-category', productCategoriesController.add);
     router.get('/product-category/:id', productCategoriesController.show);
     //Buscar productos
     router.get('/search_products', productsController.search);
     //rutas para productos.
-    router.get('/products', productsController.list);
+    router.get('/products',grantAccess('readAny', 'user'), productsController.list);
     router.post('/products', productsController.add);
     router.get('/products/:id', productsController.show);
 

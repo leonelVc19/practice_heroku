@@ -8,6 +8,7 @@ require('./middlewares/auth');
 
 //importacion de los modelos.
 const db = require('./models');
+
 //importacion de rutas.
 const routes = require('./routes/routes');
 const rutasNoProtegidas = require('./routes/rutasNoProtegidas');
