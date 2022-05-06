@@ -18,28 +18,28 @@ const usuariosController = require('../controllers/UsuariosController');
 module.exports = () =>{
 
     //Clientes.
-    router.get('/customers', grantAccess('readAny', 'customer'), customersController.list);
-    router.post('/customers', customersController.add);
-    router.get('/customers/:id', customersController.show);
-    router.post('/filtrar', customersController.filtrar);
-    router.get('/search', customersController.search);
-    router.delete('/customers/:id', customersController.eliminar);
+    router.get('/customers', grantAccess('readAny', 'customers'), customersController.list);
+    router.post('/customers', grantAccess('createAny', 'customers'), customersController.add);
+    router.get('/customers/:id', grantAccess('readAny', 'customers'),customersController.show);
+    router.post('/filtrar', grantAccess('readAny', 'customers'),customersController.filtrar);
+    router.get('/search', grantAccess('readAny', 'customers'),customersController.search);
+    router.delete('/customers/:id',  grantAccess('deleteAny', 'customers'), customersController.eliminar);
     router.put('/customers/:id', customersController.actua);
 
     //rutas para productos categoria.
-    router.get('/product-category',grantAccess('readAny', 'user'), productCategoriesController.list)
-    router.post('/product-category', productCategoriesController.add);
-    router.get('/product-category/:id', productCategoriesController.show);
+    router.get('/product-category', grantAccess('readAny', 'product-category'), productCategoriesController.list)
+    router.post('/product-category', grantAccess('createAny', 'product-category'), productCategoriesController.add);
+    router.get('/product-category/:id', grantAccess('readAny', 'product-category'), productCategoriesController.show);
     //Buscar productos
-    router.get('/search_products', productsController.search);
+    router.get('/search_products', grantAccess('readAny', 'product-category'), productsController.search);
     //rutas para productos.
-    router.get('/products',grantAccess('readAny', 'user'), productsController.list);
-    router.post('/products', productsController.add);
-    router.get('/products/:id', productsController.show);
+    router.get('/products', grantAccess('readAny', 'products'), productsController.list);
+    router.post('/products', grantAccess('createAny', 'products'), productsController.add);
+    router.get('/products/:id', grantAccess('readAny', 'products'), productsController.show);
 
 
-    router.get('/products/category/:id', productsController.listC);
-    router.get('/random-products/category/:id', productsController.randomList);
+    router.get('/products/category/:id', grantAccess('readAny', 'products'),  productsController.listC);
+    router.get('/random-products/category/:id', grantAccess('readAny', 'products'), productsController.randomList);
     
     
     //Ruta para imagen

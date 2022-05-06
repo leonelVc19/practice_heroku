@@ -12,6 +12,23 @@ const ac = new AccessControl();
  */
 
 exports.roles = () => {
+    ac.grant('ninguno'); ///Sin permisos alguno
+
+    ac.grant('user')
+        .readAny(['product-category', 'products']);
+    
+    ac.grant('admin')
+        .extend('user')
+        .readAny(['customers'])
+        .createAny(['product-category', 'customers'])
+        .updateAny(['product-category', 'customers']);
+    
+    ac.grant('super')
+        .extend('admin')
+        .deleteAny(['product-category', 'customers']);
+
+
+    /*
     ac.grant('ninguno');
     //Aqui los permisos de rol: niguno
 
@@ -29,6 +46,6 @@ exports.roles = () => {
     ac.grant('super')
         .extend('admin')
         .deleteAny(['customer', 'product', 'user']);
-
+*/
     return ac;
 };
