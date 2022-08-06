@@ -25,10 +25,12 @@ exports.add = async (request, response, next) => {
       user.password = null; // evitar enviarlo en la respuesta
   
       response.json({ message: 'El usuario ha sido registrado.', user});
+     
     } catch (error) {
-    
+   
       let errores = [];
       if (error.errors) {
+        console.log(error)
         errores = error.errors.map( errorItem => ({ 
           campo: errorItem.path,
           error: errorItem.message,
