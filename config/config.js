@@ -14,13 +14,18 @@ const config = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "mysql"
-  },
+  },/*
   production: {
     username: process.env.DB_USER_NAME,
     password: process.env.DB_USER_PWD,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "mysql"
+  }*/
+  production: {
+    use_env_variable: process.env.DB_USER_NAME,
+    dialect: "mysql",
+    logging: true,
   }
 };
 
