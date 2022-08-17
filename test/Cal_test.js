@@ -1,7 +1,6 @@
 var assert = require('assert');
 const calc = require( "../samples/Calc");
 
-
 describe( "Calculadora", () => {
     //Decription of case
     //Casos de prueba
